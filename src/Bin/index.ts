@@ -8,7 +8,7 @@ bin_router.get("/:bin", async(req: Request, res: Response) => {
     const bin = await method.bins.get(req.params.bin);
     res.status(201).json(bin);
   } catch (err) {
-    console.error('Error syncing account', req.params.id, err);
+    console.error('Error getting bin', req.params.id, err);
     res.json(err)
   }
 })

@@ -8,7 +8,7 @@ element_router.get('/:id', async(req: Request, res: Response) => {
     const token = await method.elements.getSessionResults(req.params.id);
     res.status(201).json(token);
   } catch (err) {
-    console.error('Error creating element token', err);
+    console.error('Error getting session results', err);
     res.json(err);
   }
 });
@@ -28,7 +28,7 @@ element_router.post('/exchange_one', async (req: Request, res: Response) => {
     const token = await method.elements.exchangePublicAccountToken(req.body);
     res.status(201).json(token);
   } catch (err) {
-    console.error('Error creating element token', err);
+    console.error('Error exchanging token', err);
     res.json(err);
   }
 });
@@ -38,7 +38,7 @@ element_router.post('/exchange_many', async (req: Request, res: Response) => {
     const tokens = await method.elements.exchangePublicAccountTokens(req.body);
     res.status(201).json(tokens);
   } catch (err) {
-    console.error('Error creating element token', err);
+    console.error('Error exchanging tokens', err);
     res.json(err);
   }
 });
