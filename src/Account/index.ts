@@ -7,7 +7,7 @@ const account_router = Router();
 account_router.get('/', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.list();
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error getting account list', err);
     res.json(err)
@@ -18,7 +18,7 @@ account_router.get('/', async (req: Request, res: Response) => {
 account_router.get('/:id', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.get(req.params.id);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error getting account', req.params.id, err);
     res.json(err)
@@ -40,7 +40,7 @@ account_router.post('/', async (req: Request, res: Response) => {
         }
     */
     const account = await method.accounts.create(req.body);
-    res.status(201).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error creating account', req.body.holder_id, err);
     res.json(err)
@@ -51,7 +51,7 @@ account_router.post('/', async (req: Request, res: Response) => {
 account_router.put('/:id', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.update(req.params.id, req.body);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error updating account', req.params.id, err);
     res.json(err)
@@ -61,7 +61,7 @@ account_router.put('/:id', async (req: Request, res: Response) => {
 account_router.get('/:id/payment_history', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.getPaymentHistory(req.params.id);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error getting payment history', req.params.id, err);
     res.json(err)
@@ -71,7 +71,7 @@ account_router.get('/:id/payment_history', async (req: Request, res: Response) =
 account_router.get('/:id/details', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.getDetails(req.params.id);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error getting account details', req.params.id, err);
     res.json(err);
@@ -85,7 +85,7 @@ account_router.post('/bulk_sync', async (req: Request, res: Response) => {
      * { acc_ids: ["acc_123", "acc_456"]] }
      */
     const account = await method.accounts.bulkSync(req.body);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error syncing accounts', err);
     res.json(err)
@@ -99,7 +99,7 @@ account_router.post('/sync', async (req: Request, res: Response) => {
      * { acc_ids: ["acc_123", "acc_456"]] }
      */
     const account = await method.accounts.sync(req.body);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
     res.json(err)
@@ -113,7 +113,7 @@ account_router.post('/bulk_sensitive', async (req: Request, res: Response) => {
      * { acc_ids: ["acc_123", "acc_456"]] }
      */
     const account = await method.accounts.bulkSensitive(req.body);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
     res.json(err)
@@ -123,7 +123,7 @@ account_router.post('/bulk_sensitive', async (req: Request, res: Response) => {
 account_router.post('/:id/sensitive', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.sensitive(req.params.id);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
     res.json(err)
@@ -133,7 +133,7 @@ account_router.post('/:id/sensitive', async (req: Request, res: Response) => {
 account_router.post('/:id/auto_syncs', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.enrollAutoSyncs(req.params.id);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
     res.json(err)
@@ -143,7 +143,7 @@ account_router.post('/:id/auto_syncs', async (req: Request, res: Response) => {
 account_router.delete('/:id/auto_syncs', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.unenrollAutoSyncs(req.params.id);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
     res.json(err)
@@ -153,7 +153,7 @@ account_router.delete('/:id/auto_syncs', async (req: Request, res: Response) => 
 account_router.post('/:id/withdraw_consent', async (req: Request, res: Response) => {
   try {
     const account = await method.accounts.withdrawConsent(req.params.id);
-    res.status(200).json(account);
+    res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
     res.json(err)
