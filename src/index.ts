@@ -8,6 +8,10 @@ import { entity_sync_router } from './EntitySync';
 import { health_check_router } from './HealthCheck';
 import { merchant_router } from './Merchant';
 import { payment_router } from './Payment';
+import { report_router } from './Report';
+import { reversal_router } from './Reversal';
+import { verification_router } from './Verification';
+import { webhook_router } from './Webhook';
 
 const api_router = Router();
 
@@ -21,5 +25,9 @@ api_router
   .use('/health_check', health_check_router)
   .use('/merchants', merchant_router)
   .use('/payments', payment_router)
+  .use('/reports', report_router)
+  .use('/reversals', reversal_router)
+  .use('/verifications', verification_router)
+  .use('/webhooks', webhook_router);
 
   export { api_router };
