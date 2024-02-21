@@ -3,33 +3,33 @@ import { method } from '../../config';
 
 const reversal_router = Router();
 
-reversal_router.get('/:paymentId', async (req: Request, res: Response) => {
+reversal_router.get('/:pmt_id', async (req: Request, res: Response) => {
   try {
-    const reversal = await method.payments(req.params.paymentId).reversals.list();
+    const reversal = await method.payments(req.params.pmt_id).reversals.list();
     res.json(reversal);
   } catch (err) {
-    console.error('Error listing reversals', req.params.paymentId, err);
+    console.error('Error listing reversals', req.params.pmt_id, err);
     res.json(err);
   }
 });
 
 
-reversal_router.get('/:paymentId/:reversalId', async (req: Request, res: Response) => {
+reversal_router.get('/:pmt_id/:rvs_id', async (req: Request, res: Response) => {
   try {
-    const reversal = await method.payments(req.params.paymentId).reversals.get(req.params.reversalId);
+    const reversal = await method.payments(req.params.pmt_id).reversals.get(req.params.rvs_id);
     res.json(reversal);
   } catch (err) {
-    console.error('Error getting reversal', req.params.paymentId, req.params.reversalId, err);
+    console.error('Error getting reversal', req.params.pmt_id, req.params.rvs_id, err);
     res.json(err);
   }
 });
 
-reversal_router.put('/:paymentId/:reversalId', async (req: Request, res: Response) => {
+reversal_router.put('/:pmt_id/:rvs_id', async (req: Request, res: Response) => {
   try {
-    const reversal = await method.payments(req.params.paymentId).reversals.update(req.params.reversalId, { status: 'pending' });
+    const reversal = await method.payments(req.params.pmt_id).reversals.update(req.params.rvs_id, { status: 'pending' });
     res.json(reversal);
   } catch (err) {
-    console.error('Error updating reversal. Payment:', req.params.paymentId, 'Reversal:', req.params.reversalId, err);
+    console.error('Error updating reversal. Payment:', req.params.pmt_id, 'Reversal:', req.params.rvs_id, err);
     res.json(err);
   }
 });

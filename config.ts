@@ -25,8 +25,8 @@ export const method = new Method({
     shouldResetTimeout: false,
     retryDelay: (retryDelayTime=retryTime) => retryDelayTime,
     retryCondition: (err) => {
-      if (err) false
-      return true
+      if (err) false;
+      return true;
     },
     onRetry: (e) => {
       console.log('onRetry', e);

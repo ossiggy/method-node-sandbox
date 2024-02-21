@@ -3,12 +3,12 @@ import { method } from '../../config';
 
 const payment_router = Router();
 
-payment_router.get('/:id', async (req: Request, res: Response) => {
+payment_router.get('/:pmt_id', async (req: Request, res: Response) => {
   try {
-    const payment = await method.payments.get(req.params.id);
+    const payment = await method.payments.get(req.params.pmt_id);
     res.json(payment);
   } catch (err) {
-    console.error('Error getting payment', req.params.id, err);
+    console.error('Error getting payment', req.params.pmt_id, err);
     res.json(err);
   }
 });
@@ -64,12 +64,12 @@ payment_router.post('/', async (req: Request, res: Response) => {
   }
 })
 
-payment_router.delete('/:id', async (req: Request, res: Response) => {
+payment_router.delete('/:pmt_id', async (req: Request, res: Response) => {
   try {
-    const success = await method.payments.delete(req.params.id);
+    const success = await method.payments.delete(req.params.pmt_id);
     res.json(success);
   } catch (err) {
-    console.error('Error deleting payment', req.params.id, err);
+    console.error('Error deleting payment', req.params.pmt_id, err);
     res.json(err);
   }
 });

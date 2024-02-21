@@ -3,9 +3,9 @@ import { method } from '../../config';
 
 const element_router = Router();
 
-element_router.get('/:id', async(req: Request, res: Response) => {
+element_router.get('/:ent_id', async(req: Request, res: Response) => {
   try {
-    const token = await method.elements.getSessionResults(req.params.id);
+    const token = await method.elements.getSessionResults(req.params.ent_id);
     res.json(token);
   } catch (err) {
     console.error('Error getting session results', err);

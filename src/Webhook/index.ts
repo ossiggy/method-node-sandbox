@@ -13,12 +13,12 @@ webhook_router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-webhook_router.get('/:id', async (req: Request, res: Response) => {
+webhook_router.get('/:whk_id', async (req: Request, res: Response) => {
   try {
-    const webhook = await method.webhooks.get(req.params.id);
+    const webhook = await method.webhooks.get(req.params.whk_id);
     res.json(webhook);
   } catch (err) {
-    console.error('Error getting webhook', req.params.id, err);
+    console.error('Error getting webhook', req.params.whk_id, err);
     res.json(err);
   }
 });
@@ -41,12 +41,12 @@ webhook_router.post('/', async (req: Request, res: Response) => {
   }
 })
 
-webhook_router.delete('/:id', async (req: Request, res: Response) => {
+webhook_router.delete('/:whk_id', async (req: Request, res: Response) => {
   try {
-    const webhook = await method.webhooks.delete(req.params.id);
+    const webhook = await method.webhooks.delete(req.params.whk_id);
     res.json(webhook);
   } catch (err) {
-    console.error('Error deleting webhook', req.params.id, err);
+    console.error('Error deleting webhook', req.params.whk_id, err);
     res.json(err);
   }
 });

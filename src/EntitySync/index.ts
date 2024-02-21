@@ -3,17 +3,17 @@ import { method } from '../../config';
 
 const entity_sync_router = Router();
 
-entity_sync_router.get('/:id', async (req: Request, res: Response) => {
+entity_sync_router.get('/:ent_id', async (req: Request, res: Response) => {
   try {
-    const sync = await method.entities(req.params.id).syncs.get();
+    const sync = await method.entities(req.params.ent_id).syncs.get();
     res.json(sync);
   } catch (err) {
-    console.error('Error getting sync', req.params.id, err);
+    console.error('Error getting sync', req.params.ent_id, err);
     res.json(err);
   }
 });
 
-entity_sync_router.post('/:id', async (req: Request, res: Response) => {
+entity_sync_router.post('/:ent_id', async (req: Request, res: Response) => {
   try {
     /**
      * req.body:
@@ -21,10 +21,10 @@ entity_sync_router.post('/:id', async (req: Request, res: Response) => {
      *  types: "capabilities" | "accounts"
      * }
      */
-    const sync = await method.entities(req.params.id).syncs.create(req.body.types);
+    const sync = await method.entities(req.params.ent_id).syncs.create(req.body.types);
     res.json(sync);
   } catch (err) {
-    console.error('Error creating sync', req.params.id, err);
+    console.error('Error creating sync', req.params.ent_id, err);
     res.json(err);
   }
 });

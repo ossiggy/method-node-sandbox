@@ -3,12 +3,12 @@ import { method } from '../../config';
 
 const merchant_router = Router();
 
-merchant_router.get('/:id', async (req: Request, res: Response) => {
+merchant_router.get('/:mch_id', async (req: Request, res: Response) => {
   try {
-    const merchant = await method.merchants.get(req.params.id);
+    const merchant = await method.merchants.get(req.params.mch_id);
     res.json(merchant);
   } catch (err) {
-    console.error('Error getting merchant', req.params.id, err);
+    console.error('Error getting merchant', req.params.mch_id, err);
     res.json(err);
   }
 });

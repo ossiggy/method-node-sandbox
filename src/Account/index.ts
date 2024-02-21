@@ -15,12 +15,12 @@ account_router.get('/', async (req: Request, res: Response) => {
 });
 
 // Retrieve an account (id should be acc_id)
-account_router.get('/:id', async (req: Request, res: Response) => {
+account_router.get('/:acc_id', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.get(req.params.id);
+    const account = await method.accounts.get(req.params.acc_id);
     res.json(account);
   } catch (err) {
-    console.error('Error getting account', req.params.id, err);
+    console.error('Error getting account', req.params.acc_id, err);
     res.json(err)
   }
 });
@@ -48,32 +48,32 @@ account_router.post('/', async (req: Request, res: Response) => {
 });
 
 // Update an account's information
-account_router.put('/:id', async (req: Request, res: Response) => {
+account_router.put('/:acc_id', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.update(req.params.id, req.body);
+    const account = await method.accounts.update(req.params.acc_id, req.body);
     res.json(account);
   } catch (err) {
-    console.error('Error updating account', req.params.id, err);
+    console.error('Error updating account', req.params.acc_id, err);
     res.json(err)
   }
 });
 
-account_router.get('/:id/payment_history', async (req: Request, res: Response) => {
+account_router.get('/:acc_id/payment_history', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.getPaymentHistory(req.params.id);
+    const account = await method.accounts.getPaymentHistory(req.params.acc_id);
     res.json(account);
   } catch (err) {
-    console.error('Error getting payment history', req.params.id, err);
+    console.error('Error getting payment history', req.params.acc_id, err);
     res.json(err)
   }
 });
 
-account_router.get('/:id/details', async (req: Request, res: Response) => {
+account_router.get('/:acc_id/details', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.getDetails(req.params.id);
+    const account = await method.accounts.getDetails(req.params.acc_id);
     res.json(account);
   } catch (err) {
-    console.error('Error getting account details', req.params.id, err);
+    console.error('Error getting account details', req.params.acc_id, err);
     res.json(err);
   }
 });
@@ -118,67 +118,67 @@ account_router.post('/bulk_sensitive', async (req: Request, res: Response) => {
     const account = await method.accounts.bulkSensitive(req.body.acc_ids, req.body.fields);
     res.json(account);
   } catch (err) {
-    console.error('Error syncing account', err);
+    console.error('Error getting bulk sensitive info', err);
     res.json(err)
   }
 });
 
-account_router.post('/:id/sensitive', async (req: Request, res: Response) => {
+account_router.post('/:acc_id/sensitive', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.sensitive(req.params.id);
+    const account = await method.accounts.sensitive(req.params.acc_id);
     res.json(account);
   } catch (err) {
-    console.error('Error syncing account', err);
+    console.error('Error getting sensitive info', err);
     res.json(err)
   }
 });
 
-account_router.post('/:id/auto_syncs', async (req: Request, res: Response) => {
+account_router.post('/:acc_id/auto_syncs', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.enrollAutoSyncs(req.params.id);
+    const account = await method.accounts.enrollAutoSyncs(req.params.acc_id);
     res.json(account);
   } catch (err) {
-    console.error('Error syncing account', err);
+    console.error('Error creating auto syncs', err);
     res.json(err)
   }
 });
 
-account_router.delete('/:id/auto_syncs', async (req: Request, res: Response) => {
+account_router.delete('/:acc_id/auto_syncs', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.unenrollAutoSyncs(req.params.id);
+    const account = await method.accounts.unenrollAutoSyncs(req.params.acc_id);
     res.json(account);
   } catch (err) {
-    console.error('Error syncing account', err);
+    console.error('Error unenrolling auto syncs', err);
     res.json(err)
   }
 });
 
-account_router.post('/:id/withdraw_consent', async (req: Request, res: Response) => {
+account_router.post('/:acc_id/withdraw_consent', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.withdrawConsent(req.params.id);
+    const account = await method.accounts.withdrawConsent(req.params.acc_id);
     res.json(account);
   } catch (err) {
-    console.error('Error syncing account', err);
+    console.error('Error withdrawing consent', err);
     res.json(err);
   }
 });
 
-account_router.post('/:id/payoffs', async (req: Request, res: Response) => {
+account_router.post('/:acc_id/payoffs', async (req: Request, res: Response) => {
   try {
-    const payoff = await method.accounts.createPayoff(req.params.id);
+    const payoff = await method.accounts.createPayoff(req.params.acc_id);
     res.json(payoff);
   } catch (err) {
-    console.error('Error syncing account', err);
+    console.error('Error creating payoffs', err);
     res.json(err);
   }
 });
 
-account_router.get('/:id/payoffs/:pyf_id', async (req: Request, res: Response) => {
+account_router.get('/:acc_id/payoffs/:pyf_id', async (req: Request, res: Response) => {
   try {
-    const payoff = await method.accounts.getPayoff(req.params.id, req.params.pyf_id);
+    const payoff = await method.accounts.getPayoff(req.params.acc_id, req.params.pyf_id);
     res.json(payoff);
   } catch (err) {
-    console.error('Error getting account details', req.params.id, err);
+    console.error('Error getting payoff', req.params.pyf_id, err);
     res.json(err);
   }
 });
