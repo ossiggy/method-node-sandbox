@@ -121,7 +121,7 @@ account_router.post('/bulk_sensitive', async (req: Request, res: Response) => {
     console.error('Error syncing account', err);
     res.json(err)
   }
-})
+});
 
 account_router.post('/:id/sensitive', async (req: Request, res: Response) => {
   try {
@@ -131,7 +131,7 @@ account_router.post('/:id/sensitive', async (req: Request, res: Response) => {
     console.error('Error syncing account', err);
     res.json(err)
   }
-})
+});
 
 account_router.post('/:id/auto_syncs', async (req: Request, res: Response) => {
   try {
@@ -141,7 +141,7 @@ account_router.post('/:id/auto_syncs', async (req: Request, res: Response) => {
     console.error('Error syncing account', err);
     res.json(err)
   }
-})
+});
 
 account_router.delete('/:id/auto_syncs', async (req: Request, res: Response) => {
   try {
@@ -151,7 +151,7 @@ account_router.delete('/:id/auto_syncs', async (req: Request, res: Response) => 
     console.error('Error syncing account', err);
     res.json(err)
   }
-})
+});
 
 account_router.post('/:id/withdraw_consent', async (req: Request, res: Response) => {
   try {
@@ -159,8 +159,28 @@ account_router.post('/:id/withdraw_consent', async (req: Request, res: Response)
     res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
-    res.json(err)
+    res.json(err);
   }
-})
+});
+
+account_router.post('/:id/payoffs', async (req: Request, res: Response) => {
+  try {
+    const payoff = await method.accounts.createPayoff(req.params.id);
+    res.json(payoff);
+  } catch (err) {
+    console.error('Error syncing account', err);
+    res.json(err);
+  }
+});
+
+account_router.get('/:id/payoffs/:pyf_id', async (req: Request, res: Response) => {
+  try {
+    const payoff = await method.accounts.getPayoff(req.params.id, req.params.pyf_id);
+    res.json(payoff);
+  } catch (err) {
+    console.error('Error getting account details', req.params.id, err);
+    res.json(err);
+  }
+});
 
 export { account_router };
