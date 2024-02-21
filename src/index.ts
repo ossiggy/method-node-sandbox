@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { account_router } from './Account';
-import { account_sync_router } from './AccountSync';
 import { bin_router } from './Bin';
 import { element_router } from './Element';
 import { entity_router } from './Entity';
@@ -17,7 +16,6 @@ const api_router = Router();
 
 api_router
   .use('/account', account_router)
-  .use('/account_sync', account_sync_router)
   .use('/bin', bin_router)
   .use('/element', element_router)
   .use('/entity', entity_router)
@@ -30,4 +28,4 @@ api_router
   .use('/verifications', verification_router)
   .use('/webhooks', webhook_router);
 
-  export { api_router };
+export { api_router };

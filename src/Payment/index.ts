@@ -34,7 +34,7 @@ payment_router.post('/list', async (req: Request, res: Response) => {
         holder_id?: string;
       }
      */
-    const opts = req.body.opts || {}
+    const opts = req.body || {}
     const payment = await method.payments.list(opts);
     res.json(payment);
   } catch (err) {

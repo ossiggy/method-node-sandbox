@@ -84,7 +84,7 @@ account_router.post('/bulk_sync', async (req: Request, res: Response) => {
      * req.body:
      * { acc_ids: ["acc_123", "acc_456"]] }
      */
-    const account = await method.accounts.bulkSync(req.body);
+    const account = await method.accounts.bulkSync(req.body.acc_ids);
     res.json(account);
   } catch (err) {
     console.error('Error syncing accounts', err);
@@ -98,7 +98,7 @@ account_router.post('/sync', async (req: Request, res: Response) => {
      * req.body:
      * { acc_ids: ["acc_123", "acc_456"]] }
      */
-    const account = await method.accounts.sync(req.body);
+    const account = await method.accounts.sync(req.body.acc_ids);
     res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);
@@ -110,9 +110,12 @@ account_router.post('/bulk_sensitive', async (req: Request, res: Response) => {
   try {
     /**
      * req.body:
-     * { acc_ids: ["acc_123", "acc_456"]] }
+     * { 
+     *    acc_ids: ["acc_123", "acc_456"]],
+     *    
+     * }
      */
-    const account = await method.accounts.bulkSensitive(req.body);
+    const account = await method.accounts.bulkSensitive(req.body.acc_ids, req.body.fields);
     res.json(account);
   } catch (err) {
     console.error('Error syncing account', err);

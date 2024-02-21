@@ -3,19 +3,22 @@ import { Method, Environments } from 'method-node';
 
 dotenv.config();
 
+export const ENVIRONMENT = process.env.ENVIRONMENT || 'dev';
 export const PORT = process.env.PORT || '8080';
 export const METHOD_API_KEY = process.env.METHOD_API_KEY || '';
 
-const retryTime = 500;
+const retryTime = 5000;
 
 export const method = new Method({
   apiKey: METHOD_API_KEY,
-  env: Environments.dev,
-  onRequest: (e) => {
-    console.log('onRequest', e);
+  env: Environments[ENVIRONMENT as keyof typeof Environments],
+  onRequest: (event) => {
+    console.log('onRequest', event);
   },
-  onResponse: (e, res) => {
-    console.log('onResponse', e);
+  onResponse: (event, res) => {
+    console.log('onResponse event:', event);
+    console.log('OnResponse response body:', res.data);
+    return res;
   },
   axiosRetryConfig: {
     retries: 1,
@@ -25,8 +28,8 @@ export const method = new Method({
       if (err) false
       return true
     },
-    onRetry: (err) => {
-      console.log('onRetry', err);
+    onRetry: (e) => {
+      console.log('onRetry', e);
     }
   }
 });

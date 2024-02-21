@@ -14,22 +14,22 @@ reversal_router.get('/:paymentId', async (req: Request, res: Response) => {
 });
 
 
-reversal_router.get('/:paymentId/:id', async (req: Request, res: Response) => {
+reversal_router.get('/:paymentId/:reversalId', async (req: Request, res: Response) => {
   try {
-    const reversal = await method.payments(req.params.paymentId).reversals.get(req.params.id);
+    const reversal = await method.payments(req.params.paymentId).reversals.get(req.params.reversalId);
     res.json(reversal);
   } catch (err) {
-    console.error('Error getting reversal', req.params.paymentId, req.params.id, err);
+    console.error('Error getting reversal', req.params.paymentId, req.params.reversalId, err);
     res.json(err);
   }
 });
 
-reversal_router.put('/:paymentId/:id', async (req: Request, res: Response) => {
+reversal_router.put('/:paymentId/:reversalId', async (req: Request, res: Response) => {
   try {
-    const reversal = await method.payments(req.params.paymentId).reversals.update(req.params.id, { status: 'pending' });
+    const reversal = await method.payments(req.params.paymentId).reversals.update(req.params.reversalId, { status: 'pending' });
     res.json(reversal);
   } catch (err) {
-    console.error('Error updating reversal. Payment:', req.params.paymentId, 'Reversal:', req.params.id, err);
+    console.error('Error updating reversal. Payment:', req.params.paymentId, 'Reversal:', req.params.reversalId, err);
     res.json(err);
   }
 });

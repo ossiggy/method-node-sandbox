@@ -25,7 +25,13 @@ element_router.post('/', async (req: Request, res: Response) => {
 
 element_router.post('/exchange_one', async (req: Request, res: Response) => {
   try {
-    const token = await method.elements.exchangePublicAccountToken(req.body);
+    /**
+     * req.body:
+     * { 
+     *    token: "1234567",
+     * }
+     */
+    const token = await method.elements.exchangePublicAccountToken(req.body.token);
     res.json(token);
   } catch (err) {
     console.error('Error exchanging token', err);
@@ -35,7 +41,13 @@ element_router.post('/exchange_one', async (req: Request, res: Response) => {
 
 element_router.post('/exchange_many', async (req: Request, res: Response) => {
   try {
-    const tokens = await method.elements.exchangePublicAccountTokens(req.body);
+    /**
+     * req.body:
+     * { 
+     *    tokens: ["1234567", "8901234"],
+     * }
+     */
+    const tokens = await method.elements.exchangePublicAccountTokens(req.body.tokens);
     res.json(tokens);
   } catch (err) {
     console.error('Error exchanging tokens', err);
