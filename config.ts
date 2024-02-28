@@ -6,6 +6,7 @@ dotenv.config();
 export const ENVIRONMENT = process.env.ENVIRONMENT || 'dev';
 export const PORT = process.env.PORT || '8080';
 export const METHOD_API_KEY = process.env.METHOD_API_KEY || '';
+export const CLIENT_URL = process.env.CLIENT_URL || '';
 
 const retryTime = 5000;
 

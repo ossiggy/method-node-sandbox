@@ -15,6 +15,17 @@ element_router.get('/:ent_id', async(req: Request, res: Response) => {
 
 element_router.post('/', async (req: Request, res: Response) => {
   try {
+    console.log('creating token', req.body)
+    /**
+     * req.body:
+     * {
+        entity_id: entityId,
+        team_name: 'Demo Auth App',
+        type: 'auth',
+        auth: {}
+      }
+     * 
+     */
     const token = await method.elements.createToken(req.body);
     res.json(token);
   } catch (err) {

@@ -6,8 +6,20 @@ const account_router = Router();
 // List all accounts
 account_router.get('/', async (req: Request, res: Response) => {
   try {
-    const account = await method.accounts.list();
-    res.json(account);
+    const accounts = await method.accounts.list();
+    res.json(accounts);
+  } catch (err) {
+    console.error('Error getting account list', err);
+    res.json(err)
+  }
+});
+
+// List all accounts by entity
+account_router.get('/list/:holder_id', async (req: Request, res: Response) => {
+  try {
+    const accounts = await method.accounts.list({ holder_id: req.params.holder_id });
+    console.log(accounts);
+    res.json(accounts);
   } catch (err) {
     console.error('Error getting account list', err);
     res.json(err)

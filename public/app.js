@@ -28,8 +28,6 @@ const config = {
   }
 };
 
-
-
 window.addEventListener('load', async() => {
   const response = await fetch('/api/element', {
     method: 'POST',
